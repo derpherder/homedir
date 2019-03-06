@@ -1,0 +1,22 @@
+#!/bin/bash
+
+SUDO=''
+if (( $EUID != 0 )); then
+    SUDO='sudo'
+fi
+
+#$SUDO a_command
+
+DISTRO=`cat /etc/os-release | grep ^NAME | cut -d \" -f 2`
+
+echo "Distro name is $DISTRO"
+
+if echo "$DISTRO" | grep -iq 'ubuntu'; then
+	# $SUDO apt install
+	echo "I AM UNBUNTU!!!"
+elif "$DISTRO" | grep -iq 'centos'; then
+	echo "I AM CENTOS!!!"
+	#$SUDO yum install
+fi
+echo "Made it to the end"
+
